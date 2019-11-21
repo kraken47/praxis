@@ -56,8 +56,8 @@ router.get('/:id', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
     let { id } = req.params
-    let updateData = {
-        id : req.body._id,
+    let updatedData = {
+        lecturerId : req.body.lecturerId,
         name : req.body.name,
         email : req.body.email,
         mobilePhone : req.body.mobilePhone,
@@ -65,7 +65,7 @@ router.put('/:id', async (req, res) => {
     }
 
     try {
-        let data = await edit(id, updateData)
+        let data = await edit(id, updatedData)
         return res.status(200).json({
             status: 'Success',
             message: 'Lecturer data has updated successfully',

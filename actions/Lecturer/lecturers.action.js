@@ -53,9 +53,8 @@ const details = async (id) => {
 const edit = async (id, updatedData) => {
     let { lecturerId, name, email, mobilePhone, subject } = updatedData
     let data = { lecturerId, name, email, mobilePhone, subject }
-
     try {
-        let query = await Lecturer.findOneAndUpdate({_id:id}).exec()
+        let query = await Lecturer.findOneAndUpdate({_id:id}, updatedData).exec()
         return query
     } catch(err){
         throw err
