@@ -1,21 +1,19 @@
-const express   = require('express')
-const router    = express.Router()
-const moment    = require("moment")
-const mongoose  = require('mognoose')
+const express = require('express')
+const router = express.Router()
+const moment = require('moment')
+const mongoose = require('mongoose')
 
 router.get('/', (req, res) => {
-    db_status = mongoose.connection.readyState
-    db_status_name = [ "disconnected",
-                       "connected",
-                       "connecting",
-                       "disconnecting"    
-                     ]
+    db_sattus = mongoose.connection.readyState
+    db_status_name = ['connected', 'connecting', 'disconnected', 'disconnecting']
+
     return res.send({
-            name: "Create Read Update Delete",
-            version: "1.0.0",
-            server_time: moment().format(),
-            database_status: db_status_name[db_status]
-        })
+        app_name: 'Student and Lecturer System Information',
+        version: '1.0.0',
+        server_time: moment().format(),
+        database_status: db_status_name[db_status]
+
+    })
 })
 
 module.exports = router

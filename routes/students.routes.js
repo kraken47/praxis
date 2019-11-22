@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
     try{
         let data = await showAll()
 
-        return res.send({
+        return res.status(200).json({
             status : "Success",
             message: 'Showed all student data',
             data
@@ -43,7 +43,7 @@ router.get('/:id', async (req, res) => {
         
         return res.status(200).json({
             status : 'Success',
-            message: "Here's the details of the lecturer!",
+            message: "Here's the details of the student!",
             data
         })
     } catch(err){
@@ -61,7 +61,8 @@ router.put('/:id', async (req, res) => {
         name : req.body.name,
         email : req.body.email,
         mobilePhone : req.body.mobilePhone,
-        major : req.body.major
+        major : req.body.major,
+        acAdvr : req.body.acAdvr
     }
 
     try {

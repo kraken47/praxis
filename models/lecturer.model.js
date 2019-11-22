@@ -6,7 +6,8 @@ let lecturerSchema = new Schema ({
     name          : String,
     email         : String,
     mobilePhone   : Number,
-    subject       : String
+    subject       : String,
+    advdStudent   : String
 })
 
 let Lecturer = mongoose.model('Lecturer', lecturerSchema)

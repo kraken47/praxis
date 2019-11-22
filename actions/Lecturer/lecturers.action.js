@@ -1,12 +1,14 @@
 const Lecturer = require('../../models/lecturer.model')
+const Subject = require('../../models/subject.model')
+const Student =  require('../../models/student.model')
 
 const create = async(req) => {
-    let { lecturerId, name, email, mobilePhone, subject } = req.body
+    let { lecturerId, name, email, mobilePhone, subject, advdStudent } = req.body
     lecturerId = parseInt(lecturerId)
     mobilePhone = parseInt(mobilePhone)
     
     let inputData = {
-        lecturerId, name, email, mobilePhone, subject
+        lecturerId, name, email, mobilePhone, subject, advdStudent
     }
 
     let data = new Lecturer(inputData)
@@ -22,17 +24,18 @@ const create = async(req) => {
 
 const showAll = async() => {
     try {
-        let query = await Lecturer.find({}).exec()
-        let data = query.map((v, i) => {
-            return {
-                lecturerId    : v.lecturerId,
-                name          : v.name,
-                email         : v.email,
-                mobilePhone   : v.mobilePhone,
-                subject       : v.subject
+        let query = await Lecturer.find({}).populate([
+            {
+                path: 'subject',
+                model: Subject
+            },
+            {
+                path: 'advdStudent',
+                model: Student
             }
-        })
-        return data
+        ]).exec()
+        
+        return query
 
     } catch(err){
         throw err

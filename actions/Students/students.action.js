@@ -1,11 +1,12 @@
 const Student =  require('../../models/student.model')
+const Lecturer = require('../../models/lecturer.model')
 
 const create = async (req) => {
-    let { studentId, name, email, mobilePhone, major } = req.body
+    let { studentId, name, email, mobilePhone, major, acAdvr } = req.body
     studentId = parseInt(studentId)
     mobilePhone = parseInt(mobilePhone)
 
-    let inputData = { studentId, name, email, mobilePhone, major }
+    let inputData = { studentId, name, email, mobilePhone, major, acAdvr }
 
     let data = new Student(inputData)
 
@@ -20,17 +21,20 @@ const create = async (req) => {
 
 const showAll = async () => {
     try {
-        let query = await Student.find({}).exec()
-        let data = query.map((v, i) => {
-            return {
-                studentId : v.studentId,
-                name : v.name,
-                email : v.email,
-                mobilePhone : v.mobilePhone,
-                major : v.major
-            }
-        })
-        return data
+        let query = await Student.find({}).populate([{
+            path: 'acAdvr',
+            model: Lecturer
+        }]).exec()
+        // let data = query.map((v, i) => {
+        //     return {
+        //         studentId : v.studentId,
+        //         name : v.name,
+        //         email : v.email,
+        //         mobilePhone : v.mobilePhone,
+        //         major : v.major
+        //     }
+        // })
+        return query
     } catch(err){
         throw err
     }
@@ -50,7 +54,7 @@ const edit = async (id, updatedData) => {
     let data = { studentId, name, email, mobilePhone, major }
 
     try {
-        let query = await Student.findOneAndUpdate({_id:id}).exec()
+        let query = await Student.findOneAndUpdate({_id:id}, updatedData).exec()
         return query
     } catch(err){
         throw err
