@@ -1,7 +1,8 @@
-const User = require('../models/user.model')
+const User = require('../../models/user.model')
 const bcrypt = require('bcryptjs')
 const nodemailer = require('nodemailer')
 const { randomKey } = require ('../../lib/generatorkey')
+const token = randomKey(54, 'aA#')
 
 class Register {
     constructor(req){
@@ -10,14 +11,14 @@ class Register {
         (this.username = req.body.username),
         (this.phone = req.body.phone),
         (this.password = req.body.password),
-        (this.password_confirm = req.body.password_confirm),
+        (this.password_confirmation = req.body.password_confirmation),
         (this.gender = req.body.gender),
         (this.activation_token = token)
     }
 
     async exec() {
         try {
-            const option = {
+            const options = {
                 host: process.env.EMAIL_HOST,
                 port: process.env.EMAIL_PORT,
                 secure: false,

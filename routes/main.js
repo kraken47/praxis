@@ -1,14 +1,6 @@
-const index = require('./index')
-const students = require('./students.routes')
-const lecturers = require('./lecturers.routes')
-const subjects = require('./subjects.routes')
-
-
+const register = require ('./register.route')
 const routes = (app) => {
-    app.use('/', index)
-    app.use('/lecturer', lecturers)
-    app.use('/student', students)
-    app.use('/subject', subjects)
+    app.use('/register', register)
 }
 
 module.exports = routes

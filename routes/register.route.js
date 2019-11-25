@@ -1,4 +1,4 @@
-const express = requrie('express')
+const express = require('express')
 const router = express.Router()
 const Register = require('../actions/login/register.action')
 const {check, validationResult, body} = require('express-validator')
@@ -25,10 +25,10 @@ check('password_confirmation')
     .not()
     .isEmpty(),
 body('password_confirmation').custom((value, {req}) => {
-    if(value != req.body.confirmation) {
-        throw new Error("Sorry, password confirmation doesn't match :(")
+    if(value != req.body.password) {
+        throw new Error("Aw snap! Password confirmation doesn't match :(")
     } else {
-        return true
+        return value
     }
     })
 ],
@@ -39,24 +39,25 @@ async (req, res) => {
             return res.send({
                 code: 400,
                 status: 'error',
-                message: error.array()
+                message: errors.array()
             })
         } try {
             let data = await new Register(req).exec()
             return res.send({
-                code: 200,
+                code: 201,
                 status: 'Success',
-                message: 'Yeay! you are registered successfully :D'
+                message: 'Yeay! you are registered successfully :D',
+                data
             })
 
             } catch(err){
-                return res.send ({
+                return res.send({
                     code: 400,
-                    status:'Error, there are something wrong!',
+                    status:'Awww something bad happened :(',
                     message: err.message
                 })
         }
     }
 )
 
-    
+module.exports = router

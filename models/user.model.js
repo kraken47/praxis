@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const mongoosePaginate = require('mongoose-paginate')
 
 const Schema = mongoose.Schema
 
@@ -47,5 +46,5 @@ let userSchema = new Schema ({
     }
 })
 
-let User = mongoose.model("User, userSchema")
+let User = mongoose.model("User", userSchema)
 module.exports = User
