@@ -1,6 +1,7 @@
-const register = require ('./register.route')
+const user = require('./user.route')
+
 const routes = (app) => {
-    app.use('/register', register)
+    app.use('/user', user)
 }
 
 module.exports = routes
