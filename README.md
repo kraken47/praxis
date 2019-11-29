@@ -4,7 +4,7 @@
 Hello stranger, this is a repo for my activity in Praxis Academy Jakarta "Node JS Programming".
 
 
-# About me
+# :bust_in_silhouette: About me
 Hello, let me tell a little bit about me. My name is Adi Gunawan and currently taking part in bootcamp for web development using language,framework, and tool such as JavaScript, Node.js, Express.js, React.js, MongoDB, and Postman. 
 
 
