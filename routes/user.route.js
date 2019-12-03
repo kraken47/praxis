@@ -64,7 +64,7 @@ async (req, res) => {
 
 router.get('/list', async (req, res) => {
     try {
-        let data = await new Get_all().exec()
+        let data = await new Get_all(req).exec()
         return res.send({
             code: 200,
             status: "Hey buddy! these are user's account data 😉",
