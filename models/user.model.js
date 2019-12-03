@@ -6,12 +6,14 @@ let userSchema = new Schema ({
     username: { type: String, default: null, unique: true },
     password: { type: String, default: null },
     email: { type: String, default: null, unique: true },
+    role_id: { type: String, required: true },
     gender: { type: String, default: null },
     phone: { type: String, default: null },
     created_at: { type: Date, default: Date.now() },
+    activation_token: { type: String, default: null },
     activated_at: { type: Date, default: null },
     deleted_at: { type: Date, default: null }
 })
 
 let User = mongoose.model('User', userSchema)
-module.exports = User 
+module.exports = User

@@ -20,13 +20,13 @@ check('phone')
 check('password')
     .not()
     .isEmpty()
-    .isLength({ min: 8 }),
+    .isLength({ min: 6 }),
 check('password_confirmation')
     .not()
     .isEmpty(),
 body('password_confirmation').custom((value, {req}) => {
     if(value != req.body.password) {
-        throw new Error("Aw snap! Password confirmation doesn't match :(")
+        throw new Error("Aw snap! Password confirmation doesn't match 😱")
     } else {
         return value
     }
@@ -46,14 +46,14 @@ async (req, res) => {
             return res.send({
                 code: 201,
                 status: 'Success',
-                message: 'Yeay! you are registered successfully :D',
+                message: 'Yeay! you are registered successfully 😉',
                 data
             })
 
             } catch(err){
                 return res.send({
                     code: 400,
-                    status:'Awww something bad happened :(',
+                    status:'Awww something bad happened 😱',
                     message: err.message
                 })
         }
