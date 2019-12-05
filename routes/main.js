@@ -4,6 +4,7 @@ const user = require('./user.route')
 const role = require('./role.route')
 const login = require ('./login.route')
 const reset = require ('./reset.route')
+const book = require ('./book.route')
 const verifyJWT = require ('../middleware/verify_jwt.middleware')
 
 const routes = (app) => {
@@ -11,6 +12,7 @@ const routes = (app) => {
     app.use('/activation', activation)
     app.use('/user', verifyJWT(), user)
     app.use('/role', verifyJWT(), role)
+    app.use('/book', verifyJWT(), book)
     app.use('/login', login)
     app.use('/reset', reset)
     }
